@@ -1,7 +1,6 @@
 {
     "name": "avtomon/wsChat",
     "description": "Built-in messager on websockets",
-    "type": "project",
     "minimum-stability": "dev",
     "config": {
         "process-timeout": 1800
