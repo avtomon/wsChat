@@ -198,7 +198,7 @@ class Chat implements MessageComponentInterface
     public function onOpen(ConnectionInterface $conn)
     {
         try {
-            if (empty($query = $conn->httpRequest->getUri()->getQuery()) || empty($sessionId = explode('=', $query)[1])) {
+            if ((!empty($conn->httpRequest) && empty($query = $conn->httpRequest->getUri()->getQuery())) || empty($sessionId = explode('=', $query)[1])) {
                 throw new ChatException('Не передан идентификатор сессии', $conn);
             }
 
@@ -369,7 +369,7 @@ class Chat implements MessageComponentInterface
      *
      * @param \Throwable $e - объект исключения/ошибки
      */
-    public function handleError(\Throwable $e)
+    public function handleError(ChatException $e)
     {
         if (empty($e->getMessage())) {
             return;
